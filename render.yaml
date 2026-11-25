@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: kampala-mart
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    plan: free
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: kampala-mart-db
+          property: connectionString
+
+databases:
+  - name: kampala-mart-db
+    plan: free
